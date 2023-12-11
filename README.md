@@ -9,7 +9,7 @@
 ```
 $ cd hireLatamTest
 ```
-3. Run
+3. Run∏
 ```
 $docker-compose up -d
 ```
@@ -21,5 +21,11 @@ $docker-compose up -d
  configure on install
 + user: user
 + password: password
+
+## How to see changes
+On wordpress wp-admin create a page using the template 'Session Scheduler' and access it.       
+for example:  'session' on 'http://localhost/session/'
+(Session scheduler)[http://localhost/session/]
+
 
 
