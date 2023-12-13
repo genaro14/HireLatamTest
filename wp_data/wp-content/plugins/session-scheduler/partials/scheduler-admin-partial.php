@@ -1,3 +1,13 @@
+<?php
+
+function removeEscaped($inputString) {
+    $inputString = stripslashes($inputString);
+    $outputString = sanitize_text_field($inputString);
+
+    return $outputString;
+}
+?>
+
 <div id="scheduled-sessions-table">
     <h2>Scheduled Sessions</h2>
     <table class="wp-list-table widefat fixed striped">
@@ -13,11 +23,12 @@
         <tbody>
             <?php
             foreach ($scheduled_dates as $date) {
+                $parsed_notes = removeEscaped($date['session_notes']); 
                 echo "<tr>";
                 echo "<td>{$date['session_name']}</td>";
                 echo "<td>{$date['session_date']}</td>";
                 echo "<td>{$date['session_hour']}</td>";
-                echo "<td>{$date['session_notes']}</td>";
+                echo "<td>{$parsed_notes}</td>";
                 echo "<td><img src='https://cdn.pixabay.com/photo/2017/02/23/08/46/garbage-2091534_1280.png' alt='Delete' height='20' class='delete-session' data-session-id='{$date['id']}'></td>";
                 echo "</tr>";
             }

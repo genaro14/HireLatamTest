@@ -5,21 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return inputValue.trim().replace(/<\/?[^>]+(>|$)/g, "");
   };
 
-  
-
   const isValidDate = (inputDate, inputHour) => {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     const hourRegex = /^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/;
     const date = new Date();
     const currentDate =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-      if (date_debugger) {
+    if (date_debugger) {
       console.error("Input:", inputDate);
       console.error("CURR:", currentDate);
       console.error("HOUR:", inputHour);
       console.error("DATE REGX check:", dateRegex.test(inputDate));
       console.error("HOUR REGX check:", hourRegex.test(inputHour));
-      console.error("IS FUTURE?", inputDate >= currentDate ? 'YES' : 'NO' );
+      console.error("IS FUTURE?", inputDate >= currentDate ? "YES" : "NO");
     }
     if (
       !(inputDate >= currentDate) ||
@@ -31,20 +29,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const isToday = inputDate == currentDate;
     if (isToday) {
-      date_debugger && console.error("IS Today:");
-      // Only compare hours if is today, some plain conversion inside. Probabblyeasier with a date lib.
+      date_debugger && console.error("IS Today: YES");
+      // Only compare hours if it is today, some plain conversion inside. Probably easier with a date lib.
       const currentTime = new Date();
-      const hour = currentTime.getHours();
-      const minutes = currentTime.getMinutes();
-      const period = hour >= 12 ? "PM" : "AM";
-      const formattedHour = (hour % 12 || 12).toString().padStart(2, "0");
-      const formattedMinutes = minutes.toString().padStart(2, "0");
-      const compareTime = `${formattedHour}:${formattedMinutes} ${period}`;
+      const date = currentTime.getDate();
 
-      if (compareTime >= inputHour) {
+      const inputTimeArray = inputHour.split(" ");
+      const inputTime = inputTimeArray[0];
+      const meridian = inputTimeArray[1];
+
+      const compareTime = new Date(
+        `${currentTime.getFullYear()}-${
+          currentTime.getMonth() + 1
+        }-${date} ${inputTime} ${meridian}`
+      );
+      const now = new Date()
+      console.error('COMP:', compareTime);
+      console.error('NOW:', now);
+      console.error('IS BIGGER Compare than NOW:', compareTime <= now);
+
+      if (compareTime <= now) {
         if (date_debugger) {
-          console.error(compareTime);
-          console.error(inputHour);
           console.error("FAIL HOUR:");
         }
         return false;

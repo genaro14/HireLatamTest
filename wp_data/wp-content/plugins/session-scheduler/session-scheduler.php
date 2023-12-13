@@ -33,7 +33,7 @@ class SessionScheduler
         session_date date NOT NULL,
         session_hour varchar(10) NOT NULL,
         session_notes text DEFAULT NULL,
-        session_date_created date NOT NULL,
+        session_date_created datetime NOT NULL,
         PRIMARY KEY (id)
     ) $charset_collate;";
 
