@@ -1,18 +1,19 @@
-    <?php
-    /*
+<?php
+/*
 Template Name: Session Scheduler
 */
-    wp_head();
-    ?>
+wp_head();
+$available_hours = apply_filters('get_available_session_hours', array());
 
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1> Sesion Scheduler</h1>
-            </div>
-            <div class="date-picker">
-                <h2>Select a day</h2>
+?>
 
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Session Scheduler</h1>
+        </div>
+        <div class="blocks">
+            <div class="blocks__date">
                 <div class="wrapper">
                     <header>
                         <p class="current-date"></p>
@@ -35,6 +36,27 @@ Template Name: Session Scheduler
                     </div>
                 </div>
             </div>
+            <div class="blocks__form">
+                <form id="session-form" class="session-form" method="post">
+                    <label for="session-hour">Name: </label>
+                    <input class="mtl-input" id="session-name" name="session-name">
+                    <label for="session-date">Date: </label>
+                    <input class="mtl-input" type="text" id="session-date" name="session-date" readonly>
+
+                    <label for="session-hour">Select Hour: </label>
+                    <select class="mtl-input" id="session-hour" name="session-hour">
+
+                    </select>
+
+                    <label for="session-notes">Notes:</label>
+                    <textarea class="mtl-input" id="session-notes" name="session-notes" rows="6"></textarea>
+
+                    <button id="submit-button" class="mtl-btn" type="submit" name="submit-session-form">Schedule Session</button>
+                </form>
+            </div>
         </div>
-        <script src='/wp-content/themes/hireLatamTestTheme/scheduler.js'></script>
-    </body>
+    </div>
+    </div>
+
+    <script src='/wp-content/themes/hireLatamTestTheme/js/sanitizer.js'></script>
+</body>

@@ -1,49 +1,65 @@
-/* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 body {
   display: flex;
-  align-items: center;
-  padding: 0 10px;
   justify-content: center;
   min-height: 100vh;
-  background: #9b59b6;
+  margin: 0 !important;
 }
-
 h1,
 h2,
-h3 {
+h3,
+p,
+select,
+input {
   font-family: "Poppins", sans-serif;
-  color: #FFF;
+  color: black;
 }
 
+.flex-container {
+  display: flex;
+}
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .header {
   font-family: "Poppins", sans-serif;
+  text-align: center;
+  padding: 10px;
+  background-color: #9b59b6;
+  text-align: left;
 }
-.date-picker {
+
+.header h1 {
+  color: #f2f2f2;
+}
+.blocks {
   display: flex;
   flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-  
-  flex-direction: row;
-
+  gap: 15px;
+  border: 1px solid #cccc;
+  border-radius: 15px;
+  padding: 10px;
+}
+.blocks__form {
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+}
+.blocks__date {
+  margin: 10px auto 10px auto;
 }
 .wrapper {
-  width: 450px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f2f2f2;
+  border-radius: 12px;
 }
 .wrapper header {
   display: flex;
@@ -122,8 +138,70 @@ header .current-date {
   transform: translate(-50%, -50%);
 }
 .days li.active::before {
-  background: #9b59b6;
+  background-color: #878787;
 }
-.days li:not(.active):hover::before {
-  background: #f2f2f2;
+.session-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.mtl-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  max-width: 300px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  background-color: #9b59b6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.mtl-btn:active {
+  background-color: #0d47a1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.mtl-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.mtl-input:focus {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+.days li.selected {
+  border-radius: 50%;
+  color: white;
+}
+.days li.selected::before {
+  background-color: #9b59b6;
+}
+
+.pagination {
+  text-align: center;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    text-align: left;
+  }
+  .blocks {
+    flex-direction: row;
+  }
+  .blocks__form {
+    width: 100%;
+  }
+  .wrapper {
+    width: 450px;
+  }
 }
